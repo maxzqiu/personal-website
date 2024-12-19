@@ -1,0 +1,24 @@
+{
+    "rewrites":[
+        {
+            "source":"/projects/spinner",
+            "destination:":"https://spinner-silk.vercel.app"
+        },
+        {
+            "source":"/projects/cursor-balls",
+            "destination":"cursor-balls.vercel.app"
+        },
+        {
+            "source":"/projects/quiz-game",
+            "destination":"quizx-game-omega-two.vercel.app"
+        },
+        {
+            "source":"/projects/to-do-list",
+            "destination":"children-generation.vercel.app"
+        },
+        {
+            "source":"/projects/minesweeper",
+            "destination":"minesweeper-pied-one.vercel.app"
+        }
+    ]
+}

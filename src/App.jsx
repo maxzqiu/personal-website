@@ -10,11 +10,11 @@ export function Projects(){
     <>
       <h3>My Projects:</h3>
       <ol>
-        <li>Cursor Balls - cursor-balls.vercel.app</li>
-        <li>To Do List - children-generation.vercel.app</li>
-        <li>Quiz Game - quiz-game-omega-two.vercel.app</li>
-        <li>Spinner - spinner-silk.vercel.app</li>
-        <li>Minesweeper - minesweeper-pied-one.vercel.app</li>
+        <li><a href="/projects/cursor-balls">Cursor Balls</a></li>
+        <li><a href="/projects/to-do-list">To Do List</a></li>
+        <li><a href="/projects/quiz-game">Quiz Game</a></li>
+        <li><a href="/projects/spinner">Spinner</a></li>
+        <li><a href="/projects/minesweeper">Minesweeper</a></li>
       </ol>
     </>
   )
@@ -30,6 +30,7 @@ export function Home(){
             <li>Favorite color: blue</li>
             <li>Panda plushies rule! </li>
         </ul>
+        <img src="../panda-clipart.jpg" alt="panda clipart"></img>
             
 
         
@@ -43,11 +44,15 @@ export function Home(){
 
 export function NavBar(){
   return (
+
           <nav>
               <ul>
+                <div className="navigation-bar">
                   <li><Link to="/about"> About</Link></li>
                   <li><Link to="/"> Home</Link></li>
                   <li><Link to="/projects"> Projects</Link></li>
+                </div>
+                  
                   
               </ul>
           </nav>
