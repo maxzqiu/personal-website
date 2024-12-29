@@ -70,6 +70,7 @@ function App() {
         
         <Route path="/" element={<Home />}></Route>
         <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/about" element={<p>Nothing here! </p>}></Route>
         
       </Routes>
               
