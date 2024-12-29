@@ -30,7 +30,7 @@ export function Home(){
             <li>Favorite color: blue</li>
             <li>Panda plushies rule! </li>
         </ul>
-        <img src="../panda-clipart.jpg" alt="panda clipart"></img>
+        <img src="/panda-clipart" alt="panda clipart"></img>
             
 
         
