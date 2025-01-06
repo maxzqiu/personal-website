@@ -11,6 +11,7 @@
     padding:20px;
     padding-right:40px;
     padding-left:40px;
+
 }
 
 nav ul li{
@@ -28,4 +29,40 @@ a:active{
 
 img {
     width:100px;
+}
+
+.disappear{
+    display:none;
+}
+
+@media (min-width:700px) {
+    .toggle-menu{
+        display:none;
+
+    }
+    .disappear{
+        display:block;
+    }
+    
+}
+
+@media (max-width:700px){
+    .navigation-bar{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        padding:0;
+        margin:0;
+        align-items:center;
+    }
+    .menu{
+        width:80%;
+    }
+    .toggle-menu{
+        width:10%;
+    }
+    
+}
+.bold{
+    font-weight:bold;
 }
