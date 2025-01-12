@@ -5,17 +5,39 @@ import './App.css'
 
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 
+let json={}
+function ProjectBubble({ name,link,text,tags, projects,setProjects }){
+  json=projects
+  json[name]=false;
+  
+  return (
+    <>
+      <h2><button onClick={()=>json[name]=!json[name]}>{name}</button></h2>
+      {setProjects(json)} 
+      <div className={()=>projects[name] ? "collapse" : ""}>
+        <p>{link}</p>
+        <p>{text}</p>
+        {tags.map(tag=><p>{tag}</p>)}
+      </div>
+      
+    </>
+  )
+}
+
 export function Projects(){
+  let [projects,setProjects]=useState({});
+
   return (
     <>
       <h3>My Projects:</h3>
-      <ol>
-        <li><a href="https://cursor-balls.vercel.app">Cursor Balls</a></li>
-        <li><a href="https://children-generation.vercel.app">To Do List</a></li>
-        <li><a href="https://quiz-game-omega-two.vercel.app">Quiz Game</a></li>
-        <li><a href="https://spinner-silk.vercel.app">Spinner</a></li>
-        <li><a href="Https://minesweeper-pied-one.vercel.app">Minesweeper</a></li>
-      </ol>
+      <ol className="projects">
+        <li><ProjectBubble name="Cursor Balls" link="https://cursor-balls.vercel.app" text="This website allows you to click around and make fireworks!" tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
+        <li><ProjectBubble name="To Do List" link="https://children-generation.vercel.app" text="Make a to do list to keep track of your homework or your chores!  " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
+        <li><ProjectBubble name="Quiz Game" link="https://quiz-game-omega-two.vercel.app" text="Have fun with some trivia questions!  " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
+        <li><ProjectBubble name="Spinner" link="https://spinner-silk.vercel.app" text="Solve a dispute between you and your friend using this spinner instead of rock-paper-scissors! " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
+        <li><ProjectBubble name="Minesweeper" link="https://minesweeper-pied-one.vercel.app" text="Don't click on a mine!  " tags={["one","two","three"]} projects={projects}  setProjects={setProjects} /></li>
+
+        </ol>
     </>
   )
 }
@@ -43,13 +65,14 @@ export function Home(){
 }
 // I thought I was being so smart :( womp womp
 export function NavBar(){
+  let [checked,setChecked]=useState(false);
+  let [clicked,setClicked]=useState("home");
   function createLink(title,name){
     return (
       <Link to={"/"+title} onClick={()=>setClicked(title)} className={clicked===title?"bold":""}> {name}</Link>
     )
   }
-  let [checked,setChecked]=useState(false);
-  let [clicked,setClicked]=useState("home");
+  
   return (
 
           <nav>
