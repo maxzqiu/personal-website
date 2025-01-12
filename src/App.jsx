@@ -10,25 +10,28 @@ function ProjectBubble({ name,link,text,tags }){
   let [enabled,setEnabled]=useState(false);
   
   return (
-    <>
-      <h2><button onClick={()=>setEnabled(!enabled)}>{name}</button></h2>
+    
+      <div className="project-bubble">
+        <h2><button className="button" onClick={()=>setEnabled(!enabled)}>{name}</button></h2>
       
-      <div className={enabled ? "" : "collapse"} >
+        <div className={enabled ? "" : "collapse"} >
         
-        <a href="https://cursor-balls.vercel.app">https://cursor-balls.vercel.app</a>
-        <div className="project-bubble-text">
-          <img src="panda-clipart.jpg"></img>
-          <p>{text}</p>
-        </div>
+          <a href="https://cursor-balls.vercel.app">https://cursor-balls.vercel.app</a>
+          <div className="text">
+            <img src="panda-clipart.jpg"></img>
+            <p>{text}</p>
+          </div>
 
-        <div className="project-bubble-tags">
+        <div className="tags">
           {tags.map((tag,i)=><p key={i}>{tag}</p>)}
           <button>Click to see more details! </button>
         </div>
         
+        </div>
       </div>
       
-    </>
+      
+    
   )
 }
 

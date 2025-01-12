@@ -93,7 +93,7 @@ img {
     font-weight:bold;
 }
 
-.projects li button{
+.project-bubble .button{
     font-size:var(--font-large);
 }
 
@@ -101,20 +101,44 @@ img {
     display:none;
 }
 
-.project-bubble-text{
+.project-bubble .text{
     display:flex;
 
 }
 
-.project-bubble-tags{
+.project-bubble .text p {
+    font-family:'Lucida Sans';
+    border-width:5px;
+    border-style:solid;
+    border-color:black;
+    border-radius:10%;
+    padding:1em;
+    margin:1em;
+}
+
+.project-bubble .text img {
+    margin-top:1em;
+
+}
+
+.project-bubble .tags{
     display:flex;
     justify-content:space-evenly;
+    
+
 
 }
 
-.project-bubble-tags button{
-    width:4em;
-    height:1.5em;
-    font-size:100px !important;
+.project-bubble .tags button{
+    width:10em;
+    height:3em;
+    font-size:0.75em;
 }
 
+.project-bubble .tags p {
+    font-family:monospace;
+    border-style:solid;
+    border-width:3px;
+    padding:0.5em;
+    border-color:mediumseagreen;
+}
