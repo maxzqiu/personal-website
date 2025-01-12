@@ -5,19 +5,27 @@ import './App.css'
 
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 
-let json={}
-function ProjectBubble({ name,link,text,tags, projects,setProjects }){
-  json=projects
-  json[name]=false;
+
+function ProjectBubble({ name,link,text,tags }){
+  let [enabled,setEnabled]=useState(false);
   
   return (
     <>
-      <h2><button onClick={()=>json[name]=!json[name]}>{name}</button></h2>
-      {setProjects(json)} 
-      <div className={()=>projects[name] ? "collapse" : ""}>
-        <p>{link}</p>
-        <p>{text}</p>
-        {tags.map(tag=><p>{tag}</p>)}
+      <h2><button onClick={()=>setEnabled(!enabled)}>{name}</button></h2>
+      
+      <div className={enabled ? "" : "collapse"} >
+        
+        <a href="https://cursor-balls.vercel.app">https://cursor-balls.vercel.app</a>
+        <div className="project-bubble-text">
+          <img src="panda-clipart.jpg"></img>
+          <p>{text}</p>
+        </div>
+
+        <div className="project-bubble-tags">
+          {tags.map((tag,i)=><p key={i}>{tag}</p>)}
+          <button>Click to see more details! </button>
+        </div>
+        
       </div>
       
     </>
@@ -25,17 +33,17 @@ function ProjectBubble({ name,link,text,tags, projects,setProjects }){
 }
 
 export function Projects(){
-  let [projects,setProjects]=useState({});
+  
 
   return (
     <>
       <h3>My Projects:</h3>
       <ol className="projects">
-        <li><ProjectBubble name="Cursor Balls" link="https://cursor-balls.vercel.app" text="This website allows you to click around and make fireworks!" tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
-        <li><ProjectBubble name="To Do List" link="https://children-generation.vercel.app" text="Make a to do list to keep track of your homework or your chores!  " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
-        <li><ProjectBubble name="Quiz Game" link="https://quiz-game-omega-two.vercel.app" text="Have fun with some trivia questions!  " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
-        <li><ProjectBubble name="Spinner" link="https://spinner-silk.vercel.app" text="Solve a dispute between you and your friend using this spinner instead of rock-paper-scissors! " tags={["one","two","three"]} projects={projects} setProjects={setProjects} /></li>
-        <li><ProjectBubble name="Minesweeper" link="https://minesweeper-pied-one.vercel.app" text="Don't click on a mine!  " tags={["one","two","three"]} projects={projects}  setProjects={setProjects} /></li>
+        <li><ProjectBubble name="Cursor Balls" link="https://cursor-balls.vercel.app" text="This website allows you to click around and make fireworks!" tags={["one","two","three"]} /></li>
+        <li><ProjectBubble name="To Do List" link="https://children-generation.vercel.app" text="Make a to do list to keep track of your homework or your chores!  " tags={["one","two","three"]} /></li>
+        <li><ProjectBubble name="Quiz Game" link="https://quiz-game-omega-two.vercel.app" text="Have fun with some trivia questions!  " tags={["one","two","three"]}  /></li>
+        <li><ProjectBubble name="Spinner" link="https://spinner-silk.vercel.app" text="Solve a dispute between you and your friend using this spinner instead of rock-paper-scissors! " tags={["one","two","three"]} /></li>
+        <li><ProjectBubble name="Minesweeper" link="https://minesweeper-pied-one.vercel.app" text="Don't click on a mine!  " tags={["one","two","three"]}  /></li>
 
         </ol>
     </>
