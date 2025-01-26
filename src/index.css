@@ -89,6 +89,14 @@ img {
 
 .project-bubble .button {
   font-size: var(--font-large);
+  border-radius:10px;
+  transition: all 0.3s ease;
+  
+}
+.project-bubble .button:hover{
+  height:1.75em;
+  width:7em;
+  
 }
 
 .collapse {
@@ -104,7 +112,7 @@ img {
   border-width: 5px;
   border-style: solid;
   border-color: black;
-  border-radius: 10%;
+  border-radius: 10px;
   padding: 1em;
   margin: 1em;
 }
@@ -130,4 +138,5 @@ img {
   border-width: 3px;
   padding: 0.5em;
   border-color: mediumseagreen;
+  border-radius: 5px;
 }
