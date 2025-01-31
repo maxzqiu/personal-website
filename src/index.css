@@ -89,14 +89,12 @@ img {
 
 .project-bubble .button {
   font-size: var(--font-large);
-  border-radius:10px;
+  border-radius: 10px;
   transition: all 0.3s ease;
-  
 }
-.project-bubble .button:hover{
-  height:1.75em;
-  width:7em;
-  
+.project-bubble .button:hover {
+  height: 1.75em;
+  width: 7em;
 }
 
 .collapse {
@@ -126,7 +124,7 @@ img {
   justify-content: space-evenly;
 }
 
-.project-bubble .tags button {
+.project-bubble .tags .link {
   width: 10em;
   height: 3em;
   font-size: 0.75em;
