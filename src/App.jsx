@@ -190,7 +190,7 @@ function App() {
             <CreateProjectText
               projectname="Cursor Balls"
               link="https://cursor-balls.vercel.app"
-              image="panda-clipart.jpg"
+              image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}
               text="Cursor Balls is a super duper fun game! "
             />
@@ -203,7 +203,7 @@ function App() {
             <CreateProjectText
               projectname="To Do List"
               link="https://children-generation.vercel.app"
-              image="panda-clipart.jpg"
+              image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}
               text="Use this To Do List to know what you have to do!"
             ></CreateProjectText>
@@ -215,7 +215,7 @@ function App() {
             <CreateProjectText
               projectname="Quiz Game"
               link="https://quiz-game-omega-two.vercel.app"
-              image="panda-clipart.jpg"
+              image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}
               text="Have some fun with these trivia questions! "
             ></CreateProjectText>
@@ -227,7 +227,7 @@ function App() {
             <CreateProjectText
               projectname="Spinner"
               link="https://spinner-silk.vercel.app"
-              image="panda-clipart.jpg"
+              image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}
               text="Spin!  "
             ></CreateProjectText>
@@ -239,7 +239,7 @@ function App() {
             <CreateProjectText
               projectname="Minesweeper"
               link="https://minesweeper-pied-one.vercel.app"
-              image="panda-clipart.jpg"
+              image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}
               text="Don't click on the mines!   "
             ></CreateProjectText>
