@@ -188,7 +188,7 @@ function App() {
           path="/projects/cursor-balls"
           element={
             <CreateProjectText
-              projectname="Cursor Balls"
+              projectname=""
               link="https://cursor-balls.vercel.app"
               image="/panda-clipart.jpg"
               tags={["one", "two", "three"]}

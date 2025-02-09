@@ -1,5 +1,8 @@
-# Title
+---
+title: Cursor Balls
+link: https://www.cursor-balls.vercel.app
+tags: one, two, three
+summary: Have some fun
+---
 
-Max is _ really ** really ** _ cool.
-
-## Subheading
+Max is fun.
