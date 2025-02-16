@@ -1,7 +1,8 @@
 ---
 title: Minesweeper
 link: https://www.minesweeper-pied-one.vercel.app
-tags: one, two, three
+tags: game, fun, thinking
+image: /panda-clipart.jpg
 summary: Don't click on the mine!
 ---
 

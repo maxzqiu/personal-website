@@ -1,4 +1,4 @@
-import raw from "../public/post/test.md?raw";
+//import raw from "../public/post/test.md?raw";
 
 function parseOneStar(str) {
   str = str.split("*");
@@ -57,12 +57,11 @@ function splitOnFirst(str, splitAt) {
 function parseMetadata(str) {
   let metadata = {};
   console.log(str);
+  str = str.trim();
   str = str.split(/\r\n|\n/);
+
   console.log(str);
   for (let i = 0; i < str.length; i += 1) {
-    if (i === 0 || i === str.length - 1) {
-      continue;
-    }
     let line = splitOnFirst(str[i], ":");
     if (line[0] === "tags") {
       line[1] = line[1].split(",");
@@ -72,16 +71,16 @@ function parseMetadata(str) {
   return metadata;
 }
 
-function MarkdownParser() {
+function markdownParser(raw) {
   let text = raw.split("---");
   // text[0] is empty, text[1] has metadata, and text[2] has content
-  console.log(text);
+
   console.log(parseMetadata(text[1]));
 
-  return;
+  return [parseMetadata(text[1]), parseMarkdown(text[2])];
 }
 
-export default MarkdownParser;
+export default markdownParser;
 
 // {
 //   "header":<h1>Cursor Balls</h1>,

@@ -1,7 +1,8 @@
 ---
 title: Quiz Game
 link: https://www.quiz-game-omega-two.vercel.app
-tags: one, two, three
+tags: time, trivia, fun
+image: /panda-clipart.jpg
 summary: Challenge yourself with these trivia questions!
 ---
 

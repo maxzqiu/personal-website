@@ -1,55 +1,69 @@
 import { useState } from "react";
-import MarkdownParser from "./markdownParser";
+import markdownParser from "./markdownParser";
+import CURSORBALLS from "../public/post/cursor-balls.md?raw";
+import MINESWEEPER from "../public/post/minesweeper.md?raw";
+import SPINNER from "../public/post/spinner.md?raw";
+import QUIZGAME from "../public/post/quiz-game.md?raw";
+import TODOLIST from "../public/post/to-do-list.md?raw";
 import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-function CreateProjectText({ projectname, link, image, tags, text }) {
+let directory = {};
+
+function Search({ input }) {
+  let choices = directory.keys();
+  for (let i of choices) {
+    if (i.substring(0, input.length()) !== input) {
+      choices.remove(i);
+    } else {
+      continue;
+    }
+  }
+  choices.map((i) => <li>{i}</li>);
+  return <ul>{choices}</ul>;
+}
+function CreateProjectText({ text }) {
+  text = markdownParser(text);
+  let metadata = text[0];
+  let content = text[1];
   return (
-    <div className="project-bubble">
-      <h2>{projectname}</h2>
-
-      <div>
-        <a href={link}>{link}</a>
-        <div className="text">
-          <img src={image} alt="image"></img>
-          <p>{text}</p>
-        </div>
-
-        <div className="tags">
-          {tags.map((tag, i) => (
-            <p key={i}>{tag}</p>
-          ))}
-        </div>
-      </div>
-    </div>
+    <>
+      <p>{content}</p>
+    </>
   );
 }
 
-function ProjectBubble({ name, link, text, tags, path }) {
+function ProjectBubble({ text, path }) {
+  console.log(text);
   let [enabled, setEnabled] = useState(false);
+  text = markdownParser(text);
+  let metadata = text[0];
+
+  console.log(metadata);
+  directory[metadata.title] = path;
 
   return (
     <div className="project-bubble">
       <h2>
         <button className="button" onClick={() => setEnabled(!enabled)}>
-          {name}
+          {metadata.title}
         </button>
       </h2>
 
       <div className={enabled ? "" : "collapse"}>
-        <a href={link}>{link}</a>
+        <a href={metadata.link}>{metadata.link}</a>
         <div className="text">
-          <img src="panda-clipart.jpg"></img>
-          <p>{text}</p>
+          <img src={metadata.image}></img>
+          <p>{metadata.summary}</p>
         </div>
 
         <div className="tags">
-          {tags.map((tag, i) => (
+          {metadata.tags.map((tag, i) => (
             <p key={i}>{tag}</p>
           ))}
           <Link className="link" to={path}>
-            Click To See More Details!{" "}
+            Click To See More Details!
           </Link>
         </div>
       </div>
@@ -58,54 +72,33 @@ function ProjectBubble({ name, link, text, tags, path }) {
 }
 
 export function Projects() {
+  let [input, setInput] = useState("");
   return (
     <>
       <h3>My Projects:</h3>
       <ol className="projects">
+        <div className="search">
+          <label htmlFor="search">SEARCH: </label>
+          <input type="text" onChange={(e) => setInput(e.target.value)}></input>
+          <p>Search results will show up here: </p>
+          <Search input={input} />
+        </div>
+
+        <br></br>
         <li>
-          <ProjectBubble
-            name="Cursor Balls"
-            link="https://cursor-balls.vercel.app"
-            text="This website allows you to click around and make fireworks!"
-            tags={["one", "two", "three"]}
-            path="/projects/cursor-balls"
-          />
+          <ProjectBubble text={CURSORBALLS} path="/projects/cursor-balls" />
         </li>
         <li>
-          <ProjectBubble
-            name="To Do List"
-            link="https://children-generation.vercel.app"
-            text="Make a to do list to keep track of your homework or your chores!  "
-            tags={["one", "two", "three"]}
-            path="/projects/to-do-list"
-          />
+          <ProjectBubble text={TODOLIST} path="/projects/to-do-list" />
         </li>
         <li>
-          <ProjectBubble
-            name="Quiz Game"
-            link="https://quiz-game-omega-two.vercel.app"
-            text="Have fun with some trivia questions!  "
-            tags={["one", "two", "three"]}
-            path="/projects/quiz-game"
-          />
+          <ProjectBubble text={QUIZGAME} path="/projects/quiz-game" />
         </li>
         <li>
-          <ProjectBubble
-            name="Spinner"
-            link="https://spinner-silk.vercel.app"
-            text="Solve a dispute between you and your friend using this spinner instead of rock-paper-scissors! "
-            tags={["one", "two", "three"]}
-            path="/projects/spinner"
-          />
+          <ProjectBubble text={SPINNER} path="/projects/spinner" />
         </li>
         <li>
-          <ProjectBubble
-            name="Minesweeper"
-            link="https://minesweeper-pied-one.vercel.app"
-            text="Don't click on a mine!  "
-            tags={["one", "two", "three"]}
-            path="/projects/minesweeper"
-          />
+          <ProjectBubble text={MINESWEEPER} path="/projects/minesweeper" />
         </li>
       </ol>
     </>
@@ -177,7 +170,6 @@ function App() {
   return (
     <Router>
       <p>Hello! Welcome to my website! </p>
-      <MarkdownParser />
 
       <NavBar />
       <Routes>
@@ -186,64 +178,24 @@ function App() {
         <Route path="/about" element={<p>Nothing here! </p>}></Route>
         <Route
           path="/projects/cursor-balls"
-          element={
-            <CreateProjectText
-              projectname=""
-              link="https://cursor-balls.vercel.app"
-              image="/panda-clipart.jpg"
-              tags={["one", "two", "three"]}
-              text="Cursor Balls is a super duper fun game! "
-            />
-          }
+          element={<CreateProjectText text={CURSORBALLS} />}
         ></Route>{" "}
         {/*Can change to markdown text later */}
         <Route
           path="/projects/to-do-list"
-          element={
-            <CreateProjectText
-              projectname="To Do List"
-              link="https://children-generation.vercel.app"
-              image="/panda-clipart.jpg"
-              tags={["one", "two", "three"]}
-              text="Use this To Do List to know what you have to do!"
-            ></CreateProjectText>
-          }
+          element={<CreateProjectText text={TODOLIST}></CreateProjectText>}
         ></Route>
         <Route
           path="/projects/quiz-game"
-          element={
-            <CreateProjectText
-              projectname="Quiz Game"
-              link="https://quiz-game-omega-two.vercel.app"
-              image="/panda-clipart.jpg"
-              tags={["one", "two", "three"]}
-              text="Have some fun with these trivia questions! "
-            ></CreateProjectText>
-          }
+          element={<CreateProjectText text={QUIZGAME}></CreateProjectText>}
         ></Route>
         <Route
           path="/projects/spinner"
-          element={
-            <CreateProjectText
-              projectname="Spinner"
-              link="https://spinner-silk.vercel.app"
-              image="/panda-clipart.jpg"
-              tags={["one", "two", "three"]}
-              text="Spin!  "
-            ></CreateProjectText>
-          }
+          element={<CreateProjectText text={SPINNER}></CreateProjectText>}
         ></Route>
         <Route
           path="/projects/minesweeper"
-          element={
-            <CreateProjectText
-              projectname="Minesweeper"
-              link="https://minesweeper-pied-one.vercel.app"
-              image="/panda-clipart.jpg"
-              tags={["one", "two", "three"]}
-              text="Don't click on the mines!   "
-            ></CreateProjectText>
-          }
+          element={<CreateProjectText text={MINESWEEPER}></CreateProjectText>}
         ></Route>
       </Routes>
     </Router>

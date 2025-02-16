@@ -1,7 +1,8 @@
 ---
 title: Spinner
 link: https://www.spinner-silk.vercel.app
-tags: one, two, three
+tags: spin, colors, items
+image: /panda-clipart.jpg
 summary: Settle an argument with your friends!
 ---
 

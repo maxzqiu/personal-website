@@ -1,7 +1,8 @@
 ---
 title: Cursor Balls
 link: https://www.cursor-balls.vercel.app
-tags: one, two, three
+tags: fun, fireworks, explosion
+image: /panda-clipart.jpg
 summary: Have fun!
 ---
 

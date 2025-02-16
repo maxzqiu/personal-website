@@ -138,3 +138,8 @@ img {
   border-color: mediumseagreen;
   border-radius: 5px;
 }
+
+.search input {
+  width: 20em;
+  padding: 1em;
+}

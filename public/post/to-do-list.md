@@ -1,7 +1,8 @@
 ---
 title: To Do List
 link: https://www.children-generation.vercel.app
-tags: one, two, three
+tags: chores, homework, events
+image: /panda-clipart.jpg
 summary: Keep track of what you have to do!
 ---
 
