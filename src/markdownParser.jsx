@@ -31,7 +31,7 @@ function parseThreeStars(str) {
 
 function parseMarkdown(str) {
   let strings = str.split(/\r\n\r\n|\n\n/);
-  console.log(strings);
+  
 
   return strings.map((str, key) => {
     if (str.substring(0, 2) === "##") {
@@ -56,11 +56,11 @@ function splitOnFirst(str, splitAt) {
 
 function parseMetadata(str) {
   let metadata = {};
-  console.log(str);
+  
   str = str.trim();
   str = str.split(/\r\n|\n/);
 
-  console.log(str);
+  
   for (let i = 0; i < str.length; i += 1) {
     let line = splitOnFirst(str[i], ":");
     if (line[0] === "tags") {
@@ -75,7 +75,7 @@ function markdownParser(raw) {
   let text = raw.split("---");
   // text[0] is empty, text[1] has metadata, and text[2] has content
 
-  console.log(parseMetadata(text[1]));
+  
 
   return [parseMetadata(text[1]), parseMarkdown(text[2])];
 }

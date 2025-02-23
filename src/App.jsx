@@ -6,22 +6,40 @@ import SPINNER from "../public/post/spinner.md?raw";
 import QUIZGAME from "../public/post/quiz-game.md?raw";
 import TODOLIST from "../public/post/to-do-list.md?raw";
 import "./App.css";
+import directory from "./createDirectory.jsx";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-let directory = {};
+// let directory = {
+//   "/projects/cursor-balls":markdownParser(CURSORBALLS),
+//   "/projects/minesweeper":markdownParser(MINESWEEPER),
+//   "/projects/spinner":markdownParser(SPINNER),
+//   "/projects/quiz-game":markdownParser(QUIZGAME),
+//   "/projects/to-do-list":markdownParser(TODOLIST),
+// };
+
+
 
 function Search({ input }) {
-  let choices = directory.keys();
-  for (let i of choices) {
-    if (i.substring(0, input.length()) !== input) {
-      choices.remove(i);
-    } else {
-      continue;
-    }
+  console.log(directory);
+  let choices=[];
+  console.log(Object.values[directory]);
+  for (let i of Object.values(directory)){
+    choices.push(i[0].title)
   }
-  choices.map((i) => <li>{i}</li>);
-  return <ul>{choices}</ul>;
+  console.log(choices);
+  choices.map((str)=>str.trim());
+  
+  let keep=choices.filter((str)=>str.includes(input));
+  
+  keep=keep.map((i,key) => <ProjectBubble text={CURSORBALLS} path="/projects/cursor-balls" key={key} />);
+  
+
+  return (
+  <>
+    {keep}
+  </>
+  )
 }
 function CreateProjectText({ text }) {
   text = markdownParser(text);
@@ -35,13 +53,13 @@ function CreateProjectText({ text }) {
 }
 
 function ProjectBubble({ text, path }) {
-  console.log(text);
+  
   let [enabled, setEnabled] = useState(false);
   text = markdownParser(text);
   let metadata = text[0];
 
-  console.log(metadata);
-  directory[metadata.title] = path;
+  
+  
 
   return (
     <div className="project-bubble">
@@ -76,7 +94,7 @@ export function Projects() {
   return (
     <>
       <h3>My Projects:</h3>
-      <ol className="projects">
+      <div className="projects">
         <div className="search">
           <label htmlFor="search">SEARCH: </label>
           <input type="text" onChange={(e) => setInput(e.target.value)}></input>
@@ -85,22 +103,8 @@ export function Projects() {
         </div>
 
         <br></br>
-        <li>
-          <ProjectBubble text={CURSORBALLS} path="/projects/cursor-balls" />
-        </li>
-        <li>
-          <ProjectBubble text={TODOLIST} path="/projects/to-do-list" />
-        </li>
-        <li>
-          <ProjectBubble text={QUIZGAME} path="/projects/quiz-game" />
-        </li>
-        <li>
-          <ProjectBubble text={SPINNER} path="/projects/spinner" />
-        </li>
-        <li>
-          <ProjectBubble text={MINESWEEPER} path="/projects/minesweeper" />
-        </li>
-      </ol>
+        
+      </div>
     </>
   );
 }
