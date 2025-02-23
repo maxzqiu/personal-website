@@ -72,6 +72,7 @@ function parseMetadata(str) {
 }
 
 function markdownParser(raw) {
+  console.log(raw);
   let text = raw.split("---");
   // text[0] is empty, text[1] has metadata, and text[2] has content
 

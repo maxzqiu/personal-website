@@ -1,10 +1,4 @@
 import { useState } from "react";
-import markdownParser from "./markdownParser";
-import CURSORBALLS from "../public/post/cursor-balls.md?raw";
-import MINESWEEPER from "../public/post/minesweeper.md?raw";
-import SPINNER from "../public/post/spinner.md?raw";
-import QUIZGAME from "../public/post/quiz-game.md?raw";
-import TODOLIST from "../public/post/to-do-list.md?raw";
 import "./App.css";
 import directory from "./createDirectory.jsx";
 
@@ -22,17 +16,16 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Search({ input }) {
   console.log(directory);
-  let choices=[];
+  
   console.log(Object.values[directory]);
-  for (let i of Object.values(directory)){
-    choices.push(i[0].title)
-  }
+  let choices=Object.entries(directory);
   console.log(choices);
-  choices.map((str)=>str.trim());
+  choices.map((str)=>str[1][0].title.trim());
   
-  let keep=choices.filter((str)=>str.includes(input));
+  let keep=choices.filter((str)=>str[1][0].title.includes(input));
+  console.log(keep);
   
-  keep=keep.map((i,key) => <ProjectBubble text={CURSORBALLS} path="/projects/cursor-balls" key={key} />);
+  keep=keep.map((i,key) => <ProjectBubble text={i[1]} path={i[0]} key={key} />);
   
 
   return (
@@ -42,7 +35,7 @@ function Search({ input }) {
   )
 }
 function CreateProjectText({ text }) {
-  text = markdownParser(text);
+  
   let metadata = text[0];
   let content = text[1];
   return (
@@ -55,7 +48,7 @@ function CreateProjectText({ text }) {
 function ProjectBubble({ text, path }) {
   
   let [enabled, setEnabled] = useState(false);
-  text = markdownParser(text);
+  
   let metadata = text[0];
 
   
@@ -177,30 +170,10 @@ function App() {
 
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/projects" element={<Projects />}></Route>
-        <Route path="/about" element={<p>Nothing here! </p>}></Route>
-        <Route
-          path="/projects/cursor-balls"
-          element={<CreateProjectText text={CURSORBALLS} />}
-        ></Route>{" "}
-        {/*Can change to markdown text later */}
-        <Route
-          path="/projects/to-do-list"
-          element={<CreateProjectText text={TODOLIST}></CreateProjectText>}
-        ></Route>
-        <Route
-          path="/projects/quiz-game"
-          element={<CreateProjectText text={QUIZGAME}></CreateProjectText>}
-        ></Route>
-        <Route
-          path="/projects/spinner"
-          element={<CreateProjectText text={SPINNER}></CreateProjectText>}
-        ></Route>
-        <Route
-          path="/projects/minesweeper"
-          element={<CreateProjectText text={MINESWEEPER}></CreateProjectText>}
-        ></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/about" element={<p>Nothing here! </p>} />
+        {Object.entries(directory).map(([k,v],key)=>{<Route path={k} element={<CreateProjectText text={v} />} key={key} />})}
       </Routes>
     </Router>
   );
